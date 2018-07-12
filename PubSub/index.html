@@ -7,11 +7,23 @@
   <title>Document</title>
 </head>
 <body>
+  <div id="app">
+    <input type="text" c-bind="message">
+  </div>
 
+  <script src="./binder.js"></script>
   <script src="./mediator.js"></script>
   <script src="./viewModel.js"></script>
   <script src="./view.js"></script>
   <script src="./model.js"></script>
   <script src="./mvvm.js"></script>
+  <script>
+    let vm = new MVVM({
+      el: '#app',
+      data: {
+        message: 'Hello World!'
+      }
+    })
+  </script>
 </body>
 </html>

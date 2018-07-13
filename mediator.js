@@ -1,5 +1,5 @@
 
-// 中介者
+// 中介者模式
 class Mediator {
   constructor() {
     this.channels = {}

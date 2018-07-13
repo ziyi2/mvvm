@@ -1,3 +1,4 @@
+// 构造器模式
 class MVVM {
   /** 
    * @Author: zhuxiankang 
@@ -9,6 +10,7 @@ class MVVM {
     this.$options = options
     this.$data = this.$options.data
     this.proxyData(this.$data)
+    // 建造者模式
     this.$view = new View(options.el || document.body, this)
   }
 

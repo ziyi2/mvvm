@@ -1,5 +1,8 @@
 
-let binder = {
+let binder = {}
+mixin(binder, browser)
+
+Object.assign(binder, {
   /** 
    * @Author: zhuxiankang 
    * @Date:   2018-07-12 19:01:21  
@@ -17,7 +20,7 @@ let binder = {
    * @Parm:   {String} type 绑定类型 
    */  
   isEventBind(type) {
-    return type.includes('on')
+    return type.includes('on-')
   },
 
   /** 
@@ -26,14 +29,14 @@ let binder = {
    * @Desc:   b-on:type 绑定事件处理
    * @Parm:   {Object} node Node节点
    *          {Object} vm MVVM实例对象
-   *          {String} bindValue 绑定值
-   *          {String} bindType 绑定类型 
+   *          {String} val 绑定值
+   *          {String} type 绑定类型 
    */  
-  eventHandler(node, vm, bindValue, bindType) {
-    let eventType = bindType.split(':')[1],
-        fn = vm.$options.methods && vm.$options.methods[bindValue]
+  eventHandler(node, vm, val, type) {
+    let eventType = type.split('-')[1],
+        fn = vm.$options.methods && vm.$options.methods[val]
     if(eventType && fn) {
-      node.addEventListener(eventType, fn.bind(vm), false)    
+      this.event.add(node, eventType, fn.bind(vm))    
     }
   },
 
@@ -43,10 +46,10 @@ let binder = {
    * @Desc:   b-value 绑定值处理
    * @Parm:   {Object} node Node节点
    *          {Object} vm MVVM实例对象
-   *          {String} bindValue 绑定值
+   *          {String} val 绑定值
    */  
-  value(node, vm, bindValue) {
-    this.bind(node, vm, bindValue, 'value')
+  value(node, vm, val) {
+    this.bind(node, vm, val, 'value')
   },
 
 
@@ -56,27 +59,32 @@ let binder = {
    * @Desc:   绑定处理 
    * @Parm:   {Object} node Node节点
    *          {Object} vm MVVM实例对象
-   *          {String} bindValue 绑定值 
+   *          {String} val 绑定值 
+   *          {String} type 绑定类型 
    */  
-  bind(node, vm, bindValue, bindType) {
-    let update = this.update[bindType]
-    update && update(node, vm.getDataValue(bindValue))
-  },
-
-
-
-
-  // 绑定更新对象
-  update: {
-    /** 
-     * @Author: zhuxiankang 
-     * @Date:   2018-07-12 20:23:50  
-     * @Desc:   b-value 绑定值更新 
-     * @Parm:   {Object} node Node节点
-     *          {String} value Node节点的值 
-     */    
-    value(node, value) {
-
-    }
+  bind(node, vm, val, type) {
+    let update = this[`${type}Update`]
+    console.log(type)
+    update && update(node, vm.getDataValue(val))
   }
-}
+
+
+  /** 
+   * @Author: zhuxiankang 
+   * @Date:   2018-07-13 09:22:01  
+   * @Desc:   b-value 绑定值更新
+   * @Parm:    
+   */  
+  // valueUpdate() {
+
+  // }
+})
+
+
+
+
+
+
+
+
+

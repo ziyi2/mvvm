@@ -62,7 +62,7 @@ class View {
           bindType = attr.name.substring(2)
       binder.isEvent(bindType) 
       ? binder.event(node, this.$vm, bindValue, bindType)
-      : binder[bindType] && binder[bindType](node, this.$vm, bindValue)
+      : binder[bindType] && binder[bindType](node, this.$vm, bindValue.trim())
       // 移出绑定属性
       node.removeAttribute(attr.name)
     }

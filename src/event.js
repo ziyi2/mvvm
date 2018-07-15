@@ -1,4 +1,3 @@
-// 外观模式
 let browser = {
   event: {
     /** 

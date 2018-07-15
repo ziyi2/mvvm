@@ -8,8 +8,10 @@
 </head>
 <body>
   <div id="app">
-    <input type="text" b-value="html.message" b-on-click="handlerClick">
-    {{ message }}
+    <input type="text" b-value="input.message" b-on-click="handlerClick">
+    <div>{{ input.message }}</div>
+    <div b-text="input.message"></div>
+    <div b-html="htmlMessage"></div>
   </div>
   <script src="./mixin.js"></script>
   <script src="./event.js"></script>
@@ -21,10 +23,10 @@
     let vm = new MVVM({
       el: '#app',
       data: {
-        message: 'Hello World!',
-        html: {
-          message: 'Hello Html!'
-        }
+        input: {
+          message: 'Hello Input!'
+        },
+        htmlMessage: '<button>提交</button>'
       },
       methods: {
         handlerClick(e) {

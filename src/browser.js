@@ -93,5 +93,38 @@ let browser = {
    */  
   query(selector) {
     return document.querySelector(selector)
+  },
+
+  /** 
+   * @Author: zhuxiankang 
+   * @Date:   2018-07-16 09:13:54  
+   * @Desc:   Node节点的value处理 
+   * @Parm:   {Object} node Node节点   
+   *          {String} v 节点的值
+   */  
+  val(node, v) {
+    node.value = v || ''
+  },
+
+  /** 
+   * @Author: zhuxiankang 
+   * @Date:   2018-07-16 09:17:47  
+   * @Desc:   Node节点的文本处理 
+   * @Parm:   {Object} node Node节点
+   *          {String} v 节点的文本 
+   */  
+  text(node, v) {
+    node.textContent = v || ''
+  },
+
+  /** 
+   * @Author: zhuxiankang 
+   * @Date:   2018-07-16 09:12:32  
+   * @Desc:   innerHTML处理
+   * @Parm:   {Object} node Node节点  
+   *          {String} h 填充的html片段
+   */  
+  html(node, h) {
+    node.innerHTML = h || ''
   }
 }

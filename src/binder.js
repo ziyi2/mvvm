@@ -100,7 +100,7 @@
        *          {String} val 绑定值 
        */  
       value(node, val) {
-        node.value = val || ''
+        browser.val(node, val)
       },
       
 
@@ -112,7 +112,7 @@
        *          {String} val 绑定值 
        */ 
       text(node, val) {
-        node.textContent = val || ''
+        browser.text(node, val)
       },
 
       /** 
@@ -123,7 +123,7 @@
        *          {String} val 绑定值   
        */      
       html(node, val) {
-        node.innerHTML = val || ''
+        browser.html(node, val)
       }
     }
   }

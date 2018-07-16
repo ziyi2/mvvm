@@ -63,6 +63,19 @@
       this.bind(node, vm, val, 'text')
     },
 
+
+    /** 
+     * @Author: zhuxiankang 
+     * @Date:   2018-07-16 08:56:35  
+     * @Desc:   html文本处理(b-html) 
+     * @Parm:   {Object} node Node节点
+     *          {Object} vm MVVM实例对象
+     *          {String} val 绑定值
+     */    
+    html(node, vm, val) {
+      this.bind(node, vm, val, 'html')
+    },
+
     /** 
      * @Author: zhuxiankang 
      * @Date:   2018-07-12 20:17:12  
@@ -86,8 +99,8 @@
        * @Parm:   {Object} node Node节点
        *          {String} val 绑定值 
        */  
-      value(node, value) {
-        node.value = value || ''
+      value(node, val) {
+        node.value = val || ''
       },
       
 
@@ -98,8 +111,19 @@
        * @Parm:   {Object} node Node节点
        *          {String} val 绑定值 
        */ 
-      text(node, value) {
-        node.textContent = value || ''
+      text(node, val) {
+        node.textContent = val || ''
+      },
+
+      /** 
+       * @Author: zhuxiankang 
+       * @Date:   2018-07-16 08:59:32  
+       * @Desc:   html文本更新(b-html)  
+       * @Parm:   {Object} node Node节点
+       *          {String} val 绑定值   
+       */      
+      html(node, val) {
+        node.innerHTML = val || ''
       }
     }
   }

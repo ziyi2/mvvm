@@ -39,12 +39,31 @@ class MVVM {
    * @Desc:   获取data对象的某个属性值
    * @Parm:   {String} key data对象的属性
    */  
-  getDataValue(key) {
+  getData(key) {
     let val = this
     let keys = key.split('.')
-    for(let k of keys) {
-      val = val[k]
+    for(let i=0, len=keys.length; i<len; i++) {
+      val = val[keys[i]]
     }
     return val
+  }
+
+  /** 
+   * @Author: zhuxiankang 
+   * @Date:   2018-07-16 21:54:15  
+   * @Desc:   获取data对象的某个属性值
+   * @Parm:   {String} key data对象的属性
+   *          {String} newVal 绑定值
+   */  
+  setData(key, newVal) {
+    let val = this
+    let keys = key.split('.')
+    for(let i=0, len=keys.length; i<len; i++) {
+      if(i < len - 1) {
+        val = val[keys[i]]
+      } else {
+        val[keys[i]] = newVal
+      }
+    }
   }
 }

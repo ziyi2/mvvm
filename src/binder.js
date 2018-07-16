@@ -26,12 +26,12 @@
      * @Desc:   事件绑定处理(b-on-type)
      * @Parm:   {Object} node Node节点
      *          {Object} vm MVVM实例对象
-     *          {String} val 绑定值
+     *          {String} method mvvm实例的method
      *          {String} type 绑定类型 
      */  
-    event(node, vm, val, type) {
+    event(node, vm, method, type) {
       let eventType = type.split('-')[1],
-          fn = vm.$options.methods && vm.$options.methods[val]
+          fn = vm.$options.methods && vm.$options.methods[method]
 
       if(eventType && fn) {
         browser.event.add(node, eventType, fn.bind(vm))    
@@ -44,10 +44,16 @@
      * @Desc:   值绑定处理(b-value)
      * @Parm:   {Object} node Node节点
      *          {Object} vm MVVM实例对象
-     *          {String} val 绑定值
+     *          {String} key mvvm实例的data对象的属性名称
      */  
-    value(node, vm, val) {
-      this.bind(node, vm, val, 'value')
+    value(node, vm, key) {
+      this.bind(node, vm, key, 'value')
+      let val = vm.getData(key)
+      // 数据双向绑定
+      browser.event.add(node, 'input', (e) => {
+        let newVal = browser.event.target(e).value
+        vm.setData(key, newVal)
+      })
     },
     
 
@@ -57,10 +63,10 @@
      * @Desc:   文本值绑定处理(b-text或{{}}模板)
      * @Parm:   {Object} node Node节点
      *          {Object} vm MVVM实例对象
-     *          {String} val 绑定值
+     *          {String} key mvvm实例的data对象的属性名称
      */ 
-    text(node, vm, val) {
-      this.bind(node, vm, val, 'text')
+    text(node, vm, key) {
+      this.bind(node, vm, key, 'text')
     },
 
 
@@ -70,10 +76,10 @@
      * @Desc:   html文本处理(b-html) 
      * @Parm:   {Object} node Node节点
      *          {Object} vm MVVM实例对象
-     *          {String} val 绑定值
+     *          {String} key mvvm实例的data对象的属性名称
      */    
-    html(node, vm, val) {
-      this.bind(node, vm, val, 'html')
+    html(node, vm, key) {
+      this.bind(node, vm, key, 'html')
     },
 
     /** 
@@ -82,12 +88,12 @@
      * @Desc:   绑定处理(b-) 
      * @Parm:   {Object} node Node节点
      *          {Object} vm MVVM实例对象
-     *          {String} val 绑定值 
+     *          {String} key mvvm实例的data对象的属性名称
      *          {String} type 绑定类型 
      */  
-    bind(node, vm, val, type) {
+    bind(node, vm, key, type) {
       let update = this.update[type]
-      update && update(node, vm.getDataValue(val))
+      update && update(node, vm.getData(key))
     },
   
   

@@ -1,64 +1,48 @@
 class Mediator {
   constructor() {
-    this.channels = {}
-    this.uid = 0
+    this.data = {}
   }
 
   /** 
    * @Author: zhuxiankang 
    * @Date:   2018-07-11 10:34:33  
-   * @Desc:   订阅频道
-   * @Parm:   {String} channel 频道
+   * @Desc:   订阅data对象的劫持变化
+   * @Parm:   {String} key data属性
    *          {Function} cb 回调函数 
    */  
-  sub(channel, cb) {
-    let { channels } = this
-    if(!channels[channel]) channels[channel] = []
-    this.uid ++ 
-    channels[channel].push({
-      context: this,
-      uid: this.uid,
-      cb
-    })
-    return this.uid
+  sub(key, cb) {
+    let { data } = this
+    if(data[key]) return
+    data[key] = cb
+    return key
   }
 
   /** 
    * @Author: zhuxiankang 
    * @Date:   2018-07-11 10:35:15  
-   * @Desc:   发布频道 
-   * @Parm:   {String} channel 频道
+   * @Desc:   发布data对象的劫持变化
+   * @Parm:   {String} key data属性
    *          {Any} data 数据 
    */  
-  pub(channel, data) {
-    let ch = this.channels[channel]
-    if(!ch) return false
-    let len = ch.length
-    while(len --) {
-      ch[len].cb.call(ch[len].context, data)
-    }
-    return this
+  pub(key, data) {
+    let dataKey = this.data[key]
+    if(!dataKey) return
+    dataKey.call(this, data)
+    return key
   }
 
   /** 
    * @Author: zhuxiankang 
    * @Date:   2018-07-11 11:56:06  
    * @Desc:   取消订阅  
-   * @Parm:   {String} uid 订阅标识 
+   * @Parm:   {String} key data属性 
    */  
-  cancel(uid) {
-    let { channels } = this
-    for(let channel of Object.keys(channels)) {
-      let ch = channels[channel]
-      if(ch.length === 1 && ch[0].uid === uid) {
-        delete channels[channel]
-        return
-      }
-      for(let i=0,len=ch.length; i<len; i++) {
-          if(ch[i].uid === uid) {
-            ch.splice(i,1)
-            return
-          }
+  cancel(key) {
+    let { data } = this
+    for(let dataKey of Object.keys(data)) {
+      if(dataKey === key) {
+        delete data[key]
+        break
       }
     }
   }

@@ -57,7 +57,6 @@ var hijack = (function() {
     if(!data || typeof data !== 'object') return
     return new Hijack(data)
   }
-  
 })()
 
 

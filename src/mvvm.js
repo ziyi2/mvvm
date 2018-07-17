@@ -10,6 +10,7 @@ class MVVM {
     let data = this.$data = this.$options.data
     this.proxyData(data)
     this.$hijack = hijack(data)
+    this.$mediator = new Mediator()
     this.$view = new View(options.el || document.body, this)
   }
 
@@ -47,6 +48,7 @@ class MVVM {
       val = val[keys[i]]
       if(!val) { throw new Error(`Cannot read property ${keys[i]} of undefined'`) }
     }
+    console.log('getData: ', val)
     return val
   }
 

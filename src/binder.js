@@ -32,7 +32,6 @@
     event(node, vm, method, type) {
       let eventType = type.split('-')[1],
           fn = vm.$options.methods && vm.$options.methods[method]
-
       if(eventType && fn) {
         browser.event.add(node, eventType, fn.bind(vm))    
       }
@@ -48,7 +47,6 @@
      */  
     value(node, vm, key) {
       this.bind(node, vm, key, 'value')
-      let val = vm.getData(key)
       // 数据双向绑定
       browser.event.add(node, 'input', (e) => {
         let newVal = browser.event.target(e).value
@@ -94,6 +92,8 @@
     bind(node, vm, key, type) {
       let update = this.update[type]
       update && update(node, vm.getData(key))
+
+      // 订阅数据劫持的数据变化信息
     },
   
   

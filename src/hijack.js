@@ -7,8 +7,10 @@ var hijack = (function() {
      * @Date:   2018-07-17 09:09:12  
      * @Desc:   数据劫持构造函数
      * @Parm:   {Object} mvvm实例对象的data属性 
+     *          {Object} vm mvvm实例对象
      */  
-    constructor(data) {
+    constructor(data, vm) {
+      this.vm = vm
       this.data = data
       this.hijack(data)
     }
@@ -34,7 +36,8 @@ var hijack = (function() {
      *          {Any} val data对象的属性值
      */         
     hijackKey(data, key, val) {
-      hijack(val)
+      let { vm } = this
+      hijack(val, vm)
       Object.defineProperty(data, key, {
         enumerable: true,
         configurable: false,
@@ -46,16 +49,19 @@ var hijack = (function() {
           if(newVal === val) return
           val = newVal
           console.log(`hijack set '${key}': `, val)
+          // 发布数据劫持的数据变化信息，详见binder(bind)
+          // vm.mediator.pub(key, )
+
           // 如果新值是object, 则对其属性劫持
-          hijack(newVal)
+          hijack(newVal, vm)
         }
       })
     }
   }
 
-  return (data) => {
+  return (data, vm) => {
     if(!data || typeof data !== 'object') return
-    return new Hijack(data)
+    return new Hijack(data, vm)
   }
 })()
 

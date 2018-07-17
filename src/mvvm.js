@@ -6,12 +6,12 @@ class MVVM {
    * @Parm:   {Object} options mvvm实例的参数 
    */  
   constructor(options = {}) {
-    this.$options = options
-    let data = this.$data = this.$options.data
+    this.options = options
+    this.mediator = new Mediator()
+    let data = this.data = this.options.data
     this.proxyData(data)
-    this.$hijack = hijack(data)
-    this.$mediator = new Mediator()
-    this.$view = new View(options.el || document.body, this)
+    this.hijack = hijack(data, this)
+    this.view = new View(options.el || document.body, this)
   }
 
   /** 
@@ -29,7 +29,7 @@ class MVVM {
           return data[key]
         },
         set(newVal) {
-          this.$data[key] = newVal
+          this.data[key] = newVal
         }
       })
     }

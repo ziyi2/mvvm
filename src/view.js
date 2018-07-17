@@ -7,15 +7,15 @@ class View {
    *          {Object} vm mvvm实例对象
    */  
   constructor(el, vm) {
-    this.$vm = vm
-    this.$el = this.isElementNode(el) ? el : document.querySelector(el)
-    if(this.$el) {
-      // 将已有的$el元素的所有子元素转成文档碎片
-      this.$fragment = this.node2Fragment(this.$el)
+    this.vm = vm
+    this.el = this.isElementNode(el) ? el : document.querySelector(el)
+    if(this.el) {
+      // 将已有的el元素的所有子元素转成文档碎片
+      this.fragment = this.node2Fragment(this.el)
       // 解析文档碎片
-      this.parseFragment(this.$fragment)
-      // 将文档碎片添加到$el元素中
-      this.$el.appendChild(this.$fragment)
+      this.parseFragment(this.fragment)
+      // 将文档碎片添加到el元素中
+      this.el.appendChild(this.fragment)
     }
   }
 
@@ -61,8 +61,8 @@ class View {
       let bindValue = attr.value,
           bindType = attr.name.substring(2)
       binder.isEvent(bindType) 
-      ? binder.event(node, this.$vm, bindValue, bindType)
-      : binder[bindType] && binder[bindType](node, this.$vm, bindValue.trim())
+      ? binder.event(node, this.vm, bindValue, bindType)
+      : binder[bindType] && binder[bindType](node, this.vm, bindValue.trim())
       // 移出绑定属性
       node.removeAttribute(attr.name)
     }
@@ -76,7 +76,7 @@ class View {
    *          {String} val 模板中的绑定值
    */  
   parseNodeText(node, val) {
-    binder.text(node, this.$vm, val.trim())
+    binder.text(node, this.vm, val.trim())
   }
 
   /** 

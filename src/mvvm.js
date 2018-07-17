@@ -65,5 +65,6 @@ class MVVM {
         val[keys[i]] = newVal
       }
     }
+    console.log('setData: ', val)
   }
 }

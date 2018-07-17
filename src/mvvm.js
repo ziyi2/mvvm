@@ -9,6 +9,7 @@ class MVVM {
     this.$options = options
     this.$data = this.$options.data
     this.proxyData(this.$data)
+    if(this.$data && typeof this.$data === 'object') this.$hijack = new Hijack(this.$data) 
     this.$view = new View(options.el || document.body, this)
   }
 
@@ -44,6 +45,7 @@ class MVVM {
     let keys = key.split('.')
     for(let i=0, len=keys.length; i<len; i++) {
       val = val[keys[i]]
+      if(!val) { throw new Error(`Cannot read property ${keys[i]} of undefined'`) }
     }
     return val
   }

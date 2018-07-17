@@ -7,9 +7,9 @@ class MVVM {
    */  
   constructor(options = {}) {
     this.$options = options
-    this.$data = this.$options.data
-    this.proxyData(this.$data)
-    if(this.$data && typeof this.$data === 'object') this.$hijack = new Hijack(this.$data) 
+    let data = this.$data = this.$options.data
+    this.proxyData(data)
+    this.$hijack = hijack(data)
     this.$view = new View(options.el || document.body, this)
   }
 

@@ -2,4 +2,4 @@
 
 ## 演示
 
-![mvvm](http://onh40c6zw.bkt.clouddn.com/mvvm.gif)
+![mvvm](https://github.com/ziyi2/mvvm/blob/master/img/mvvm.gif?raw=true)

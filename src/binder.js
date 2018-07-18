@@ -94,7 +94,6 @@
       update && update(node, vm.getData(key))
 
       // 订阅数据劫持的数据变化信息，详见hijack(hijackKey)
-
       let keys = key.split('.')   
       let dataKey
 

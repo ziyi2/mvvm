@@ -6,11 +6,12 @@ class MVVM {
    * @Parm:   {Object} options mvvm实例的参数 
    */  
   constructor(options = {}) {
-    this.$options = options
-    this.$data = this.$options.data
-    this.proxyData(this.$data)
-    if(this.$data && typeof this.$data === 'object') this.$hijack = new Hijack(this.$data) 
-    this.$view = new View(options.el || document.body, this)
+    this.options = options
+    this.mediator = new Mediator()
+    let data = this.data = this.options.data
+    this.proxyData(data)
+    this.hijack = hijack(data, this)
+    this.view = new View(options.el || document.body, this)
   }
 
   /** 
@@ -28,7 +29,7 @@ class MVVM {
           return data[key]
         },
         set(newVal) {
-          this.$data[key] = newVal
+          this.data[key] = newVal
         }
       })
     }
@@ -45,8 +46,9 @@ class MVVM {
     let keys = key.split('.')
     for(let i=0, len=keys.length; i<len; i++) {
       val = val[keys[i]]
-      if(!val) { throw new Error(`Cannot read property ${keys[i]} of undefined'`) }
+      if(!val && i !== len - 1) { throw new Error(`Cannot read property ${keys[i]} of undefined'`) }
     }
+    console.log('getData: ', val)
     return val
   }
 
@@ -67,5 +69,6 @@ class MVVM {
         val[keys[i]] = newVal
       }
     }
+    console.log('setData: ', val)
   }
 }

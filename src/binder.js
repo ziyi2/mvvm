@@ -100,7 +100,9 @@
 
       for(let k of keys) {
         dataKey = dataKey ? `${dataKey}.${k}` : k
+        console.log('111', dataKey)
         vm.mediator.sub(dataKey, function() {
+          console.log('mediator dataKey: ', dataKey)
           console.log('mediator key: ', k)
           console.log('mediator type: ', type)
           update && update(node, vm.getData(key))

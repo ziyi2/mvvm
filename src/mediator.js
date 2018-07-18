@@ -21,6 +21,8 @@ class Mediator {
       uid: this.uid,
       cb
     })
+    // console.log('[mediator][sub] -> dataKey: ', channel)
+    // console.log('[mediator][sub] -> this.channels: ', this.channels)
     return this.uid
   }
 
@@ -38,6 +40,7 @@ class Mediator {
     while(len --) {
       ch[len].cb.call(ch[len].context, data)
     }
+    // console.log('[mediator][pub] -> dataKey: ', channel)
     return this
   }
 

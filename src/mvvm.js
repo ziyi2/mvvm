@@ -1,4 +1,4 @@
-class MVVM {
+class Mvvm {
   /** 
    * @Author: zhuxiankang 
    * @Date:   2018-07-12 09:01:07  
@@ -48,7 +48,7 @@ class MVVM {
       val = val[keys[i]]
       if(!val && i !== len - 1) { throw new Error(`Cannot read property ${keys[i]} of undefined'`) }
     }
-    console.log('getData: ', val)
+    // console.log('[mvvm][getData] -> val: ', val)
     return val
   }
 
@@ -69,6 +69,6 @@ class MVVM {
         val[keys[i]] = newVal
       }
     }
-    console.log('setData: ', val)
+    // console.log('[mvvm][setData] -> val: ', val)
   }
 }

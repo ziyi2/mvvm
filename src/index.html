@@ -11,6 +11,7 @@
     <input type="text" b-value="input.message" b-on-input="handlerInput">
     <div>{{ input.message }}</div>
     <div b-text="text"></div>
+    <div>{{ text }}</div>
     <div b-html="htmlMessage"></div>
   </div>
   <script src="./mixin.js"></script>
@@ -21,14 +22,14 @@
   <script src="./hijack.js"></script>
   <script src="./mvvm.js"></script>
   <script>
-    let vm = new MVVM({
+    let vm = new Mvvm({
       el: '#app',
       data: {
         input: {
           message: 'Hello Input!'
         },
         text: 'ziyi2',
-        htmlMessage: '<button>提交</button>'
+        htmlMessage: `<button>提交</button>`
       },
       methods: {
         handlerInput(e) {

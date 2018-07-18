@@ -50,6 +50,8 @@
       // 数据双向绑定
       browser.event.add(node, 'input', (e) => {
         let newVal = browser.event.target(e).value
+        // console.log(`[binder][value][input(event)] -> key: `, key)
+        // console.log(`[binder][value][input(event)] -> newVal: `, newVal)
         vm.setData(key, newVal)
       })
     },
@@ -99,16 +101,14 @@
 
       for(let k of keys) {
         dataKey = dataKey ? `${dataKey}.${k}` : k
-        console.log('111', dataKey)
+        
         vm.mediator.sub(dataKey, function() {
-          console.log('mediator dataKey: ', dataKey)
-          console.log('mediator key: ', k)
-          console.log('mediator type: ', type)
+          // console.log(`[binder][update][${type}] -> node: `, node)
+          // console.log(`[binder][update][${type}] -> dataKey: `, dataKey)
+          console.log('[mediator][sub] -> dataKey: ', dataKey)
           update && update(node, vm.getData(key))
         })
       }
-
-      console.log('vm.mediator.data: ', vm.mediator.data)
     },
   
   

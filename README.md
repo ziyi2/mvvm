@@ -1,10 +1,5 @@
 # MVVM
 
-- 模块模式
-- 混入模式
-- 外观模式
-- 中介者模式(发布/订阅模式)
-- 构造器模式
-- 建造者模式
-- 命令模式
-- MVVM模式
+## 演示
+
+![mvvm](http://onh40c6zw.bkt.clouddn.com/mvvm.gif)

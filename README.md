@@ -1,4 +1,4 @@
-# MVVM
+# mvvm
 
 @(mvvm)[vue实现原理|设计模式|数据双向绑定|数据劫持|发布/订阅模式]
 
@@ -9,7 +9,7 @@
 
 ## mvvm示例
 
-> 本示例的代码采用[es6](https://ziyi2.github.io/2017/09/13/Es6%E5%88%9D%E6%8E%A2.html#more)的语法进行设计，大量使用es6的[class](https://ziyi2.github.io/2018/06/05/js%E7%B1%BB%E5%92%8C%E7%BB%A7%E6%89%BF.html#more)进行了类的封装，包括了browser.js(view视图的更新)、mediator.js(中介者)、binder.js(数据双向绑定器)、view.js(视图)、hijack.js(数据劫持)以及mvvm.js(mvvm实现)，之后将会一一讲解这些源码的设计原理以及使用的设计模式。本示例相关的代码可查看github的[ziyi2/mvvm](https://github.com/ziyi2/mvvm)。
+> 本示例的代码采用[es6语法](https://ziyi2.github.io/2017/09/13/Es6%E5%88%9D%E6%8E%A2.html#more)进行设计，包括browser.js(view视图的更新)、mediator.js(中介者)、binder.js(数据双向绑定器)、view.js(视图)、hijack.js(数据劫持)以及mvvm.js(mvvm实现)。本示例相关的代码可查看github的[ziyi2/mvvm](https://github.com/ziyi2/mvvm)。
 
 ``` javascript
 <div id="app">
@@ -62,3 +62,18 @@
 >- [命令模式](https://github.com/ziyi2/js/blob/master/JS%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F.md#command%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%BC%8F)
 >- [建造者模式](https://github.com/ziyi2/js/blob/master/JS%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F.md#%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F)
 >- [mvvm模式](https://github.com/ziyi2/js/blob/master/JS%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F.md#mvvm)
+
+### mvvm是到底什么
+
+
+
+
+
+## 参考资料
+- [维基百科 MVC](https://zh.wikipedia.org/wiki/MVC)
+- [Scaling Isomorphic Javascript Code](https://blog.nodejitsu.com/scaling-isomorphic-javascript-code/)
+- [可伸缩的同构Javascript代码](http://efe.baidu.com/blog/isomorphic/)
+- [Understanding JavaServer Pages Model 2 architecture](https://www.javaworld.com/article/2076557/java-web-development/understanding-javaserver-pages-model-2-architecture.html)
+- [GUI Architectures](https://martinfowler.com/eaaDev/uiArchs.html)
+- [秒懂前端框架历史和MVVM框架原理](https://www.jianshu.com/p/a5f2b2b45618)
+- [MVC，MVP 和 MVVM 的图示](http://www.ruanyifeng.com/blog/2015/02/mvcmvp_mvvm.html)

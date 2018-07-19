@@ -2,15 +2,14 @@
 
 @(mvvm)[vue实现原理|设计模式|数据双向绑定|数据劫持|发布/订阅模式]
 
-
 > 本文可以帮助你做什么？
-> 1、了解常用的设计模式
-> 2、了解如何实现数据双向绑定
-> 3、了解vue的mvvm模式的简单实现原理
+>- 了解常用的设计模式
+>- 了解如何实现数据双向绑定
+>- 了解vue的mvvm模式的简单实现原理
 
 ## mvvm示例
 
-> 本示例的代码采用[es6](https://ziyi2.github.io/2017/09/13/Es6%E5%88%9D%E6%8E%A2.html#more)的语法进行设计，大量使用es6的[class](https://ziyi2.github.io/2018/06/05/js%E7%B1%BB%E5%92%8C%E7%BB%A7%E6%89%BF.html#more)进行了类的封装，包括了browser.js(view视图的更新)、mediator.js(中介者)、binder.js(数据双向绑定器)、view.js(视图)、hijack.js(数据劫持)以及mvvm.js(mvvm实现)，之后将会一一讲解这些源码的设计原理以及使用的设计模式。本示例相关的代码可查看https://github.com/ziyi2/mvvm/tree/master/src。
+> 本示例的代码采用[es6](https://ziyi2.github.io/2017/09/13/Es6%E5%88%9D%E6%8E%A2.html#more)的语法进行设计，大量使用es6的[class](https://ziyi2.github.io/2018/06/05/js%E7%B1%BB%E5%92%8C%E7%BB%A7%E6%89%BF.html#more)进行了类的封装，包括了browser.js(view视图的更新)、mediator.js(中介者)、binder.js(数据双向绑定器)、view.js(视图)、hijack.js(数据劫持)以及mvvm.js(mvvm实现)，之后将会一一讲解这些源码的设计原理以及使用的设计模式。本示例相关的代码可查看github的[ziyi2/mvvm](https://github.com/ziyi2/mvvm)。
 
 ``` javascript
 <div id="app">
@@ -63,4 +62,3 @@
 >- [命令模式](https://github.com/ziyi2/js/blob/master/JS%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F.md#command%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%BC%8F)
 >- [建造者模式](https://github.com/ziyi2/js/blob/master/JS%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F.md#%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F)
 >- [mvvm模式](https://github.com/ziyi2/js/blob/master/JS%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F.md#mvvm)
-

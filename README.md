@@ -48,7 +48,7 @@
 </script>
 ```
 
-![mvvm](http://onh40c6zw.bkt.clouddn.com/mvvm.gif?imageView2/1/w/600/h/400/format/gif/q/75%7Cimageslim)
+![mvvm](http://onh40c6zw.bkt.clouddn.com/mvvm.gif?imageView2/1/w/400/h/200/format/gif/q/10|imageslim)
 
 
 ## 设计模式

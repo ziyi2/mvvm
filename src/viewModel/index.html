@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <input type="text" b-value="input.message">
+  </div>
+  <script src="./browser.js"></script>
+  <script src="./binder.js"></script>
+  <script src="./view.js"></script>
+  <script>
+    // 模型
+    let model = {
+      input: {
+        message: 'Hello Input!'
+      },
+      htmlMessage: `<button>提交</button>`,    
+      getData(key) {
+        let val = this
+        let keys = key.split('.')
+        for(let i=0, len=keys.length; i<len; i++) {
+          val = val[keys[i]]
+          if(!val && i !== len - 1) { throw new Error(`Cannot read property ${keys[i]} of undefined'`) }
+        }
+        return val
+      }
+    }
+    
+    // 抽象视图
+    let view = new View({ el: '#app', model })
+    
+
+
+  </script>
+</body>
+</html>

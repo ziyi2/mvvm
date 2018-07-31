@@ -10,6 +10,8 @@
   <div id="app">
     <input type="text" id="input1" b-value="message">
     <input type="text" id="input2" b-value="message">
+    <input type="text" id="input3" b-value="message">
+    <input type="text" id="input4" b-value="message">
   </div>
   <script src="./mediator.js"></script>
   <script src="./hijack.js"></script>
@@ -53,6 +55,9 @@
     
     // 视图
     new View('#app', model, mediator)
+
+    // model -> view
+    model.message = 'Hello Ziyi2'
     
   </script>
 </body>

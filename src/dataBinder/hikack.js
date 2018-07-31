@@ -1,19 +1,3 @@
-
-let input = document.getElementById('input')
-let div = document.getElementById('div')
-let data = { input: '' }
-
-hijack(data, input)
-
-// model -> view
-data.input = '11111111'
-
-// view -> model
-input.oninput = function(e) {
-  // model -> view
- data.input = e.target.value
-}
-
 function hijack(data) {
   if(typeof data !== 'object') return
   for(let key of Object.keys(data)) {

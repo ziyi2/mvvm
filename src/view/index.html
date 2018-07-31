@@ -8,8 +8,15 @@
 </head>
 <body>
   <div id="app">
-    <input type="text" b-value="message">
+    <input type="text" b-value="message" />
+    <input type="text" b-value="message" />
+    <input type="text" b-value="message" />
   </div>
+
+  <!-- <input type="text" value='Hello World' />
+  <input type="text" value='Hello World' />
+  <input type="text" value='Hello World' /> -->
+
   <script src="./browser.js"></script>
   <script src="./binder.js"></script>
   <script src="./view.js"></script>
@@ -17,20 +24,7 @@
     // 模型
     let model = {
       message: 'Hello World',
-
-      setData(key, newVal) {
-        let val = this
-        let keys = key.split('.')
-        for(let i=0, len=keys.length; i<len; i++) {
-          if(i < len - 1) {
-            val = val[keys[i]]
-          } else {
-            val[keys[i]] = newVal
-          }
-        }
-        // console.log('[mvvm][setData] -> val: ', val)
-      },
-
+      
       getData(key) {
         let val = this
         let keys = key.split('.')
@@ -42,7 +36,7 @@
       }
     }
     
-    // 视图
+    // 抽象视图
     new View('#app', model)
     
   </script>

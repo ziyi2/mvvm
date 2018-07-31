@@ -39,13 +39,12 @@
     value(node, key) {
       this.update(node, key)
       // 数据双向绑定
-      browser.event.add(node, 'input', (e) => {
-        // 更新model和model对应的视图
-        let newVal = browser.event.target(e).value
-        // 设置对应的数据
-        this.model.setData(key, newVal)
-        console.log(this.model)
-      })
+      // browser.event.add(node, 'input', (e) => {
+      //   let newVal = browser.event.target(e).value
+      //   // 设置对应的数据
+      //   this.model.setData(key, newVal)
+      //   console.log(this.model)
+      // })
     },
     
    
@@ -58,7 +57,6 @@
      */  
     update(node, key) {
       browser.val(node, this.model.getData(key))
-      // 订阅数据变化更新视图
     }
   }
 })(window, browser)

@@ -28,6 +28,7 @@
 
       let bindValue = attr.value,
           bindType = attr.name.substring(2)
+
       // 绑定视图指令处理
       this[bindType](node, bindValue.trim())
     },
@@ -41,6 +42,7 @@
      */  
     value(node, key) {
       this.update(node, key)
+      
       // 数据双向绑定
       browser.event.add(node, 'input', (e) => {
         // 更新model和model对应的视图

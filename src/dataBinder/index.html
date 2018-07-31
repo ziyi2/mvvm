@@ -9,7 +9,23 @@
 <body>
   <input id="input" type="text">
   <div id="div"></div>
-  <script src="./dataBinder.js"></script>
+  <script src="./hikack.js"></script>
+  <script>
+    let input = document.getElementById('input')
+    let div = document.getElementById('div')
+    let data = { input: '' }
+
+    hijack(data, input)
+
+    // model -> view
+    data.input = '11111111'
+
+    // view -> model
+    input.oninput = function(e) {
+      // model -> view
+      data.input = e.target.value
+    }
+  </script>
 </body>
 </html>
 

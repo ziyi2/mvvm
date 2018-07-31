@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <input type="text" id="input1" b-value="message">
+    <input type="text" id="input2" b-value="message">
+  </div>
+  <script src="./mediator.js"></script>
+  <script src="./hijack.js"></script>
+  <script src="./view.js"></script>
+  <script src="./browser.js"></script>
+  <script src="./binder.js"></script>
+  <script>
+    // 模型
+    let model = {
+      message: 'Hello World',
+
+      setData(key, newVal) {
+        let val = this
+        let keys = key.split('.')
+        for(let i=0, len=keys.length; i<len; i++) {
+          if(i < len - 1) {
+            val = val[keys[i]]
+          } else {
+            val[keys[i]] = newVal
+          }
+        }
+        // console.log('[mvvm][setData] -> val: ', val)
+      },
+
+      getData(key) {
+        let val = this
+        let keys = key.split('.')
+        for(let i=0, len=keys.length; i<len; i++) {
+          val = val[keys[i]]
+          if(!val && i !== len - 1) { throw new Error(`Cannot read property ${keys[i]} of undefined'`) }
+        }
+        return val
+      }
+    }
+
+    // 发布/订阅对象
+    let mediator = new Mediator()
+    
+    // 数据劫持
+    hijack(model, mediator)
+    
+    // 视图
+    new View('#app', model, mediator)
+    
+  </script>
+</body>
+</html>

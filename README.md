@@ -51,7 +51,7 @@
 
 ## 了解MV*架构设计模式的演变历史
 
-如果对于MVC、MVP和MVVM的架构设计模式不熟，建议阅读首先阅读MV*架构设计模式的演变历史。如果比较熟悉，则可以略过。
+如果对于MVC、MVP和MVVM的架构设计模式不熟，建议阅读首先阅读(MV*架构设计模式的演变历史)[https://github.com/ziyi2/mvvm/blob/master/doc/history.md]。
 
 ## 设计模式
 
@@ -66,16 +66,5 @@
 >- [mvvm模式](https://github.com/ziyi2/js/blob/master/JS%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F.md#mvvm)
 
 
-
 ## References
 - [DMQ/mvvm](https://github.com/DMQ/mvvm)
-- [Software design pattern(wikipedia)](https://en.wikipedia.org/wiki/Software_design_pattern)
-- [MVC(wikipedia)](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller)
-- [Scaling Isomorphic Javascript Code](https://blog.nodejitsu.com/scaling-isomorphic-javascript-code/)
-- [Understanding JavaServer Pages Model 2 architecture](https://www.javaworld.com/article/2076557/java-web-development/understanding-javaserver-pages-model-2-architecture.html)
-- [GUI Architectures](https://martinfowler.com/eaaDev/uiArchs.html)
-- [maria(javascript smalltalk-80 mvc)](https://github.com/petermichaux/maria)
-- [mvw(javascript mvc/mvp/mvvm)](https://github.com/petermichaux/maria)
-- [界面之下：还原真实的MV*模式](https://github.com/livoras/blog/issues/11)
-- [秒懂前端框架历史和MVVM框架原理](https://www.jianshu.com/p/a5f2b2b45618)
-- [MVC，MVP 和 MVVM 的图示](http://www.ruanyifeng.com/blog/2015/02/mvcmvp_mvvm.html)

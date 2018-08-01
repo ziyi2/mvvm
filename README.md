@@ -51,7 +51,7 @@
 
 ## 了解MV*架构设计模式的演变历史
 
-如果对于MVC、MVP和MVVM的架构设计模式不熟，建议阅读首先阅读(MV*架构设计模式的演变历史)[https://github.com/ziyi2/mvvm/blob/master/doc/history.md]。
+如果对于MVC、MVP和MVVM的架构设计模式不熟，建议阅读首先阅读[MV*架构设计模式的演变历史](https://github.com/ziyi2/mvvm/blob/master/doc/history.md)。
 
 ## 设计模式
 

@@ -61,7 +61,7 @@
 
 ### mvvm的结构设计
 
-<img  width="400px" src="http://onh40c6zw.bkt.clouddn.com/%5Bmvvm%5Dmvvm_design.png"/>
+<img  width="800px" src="http://onh40c6zw.bkt.clouddn.com/%5Bmvvm%5Dmvvm_design.png"/>
 
 
 ## 设计模式

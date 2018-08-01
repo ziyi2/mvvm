@@ -2,7 +2,7 @@
 
 > 本文可以帮助你做什么？
 >- 了解MV*架构设计模式的演变历史
->- 解观察者模式和发布/订阅模式
+>- 了解观察者模式和发布/订阅模式
 >- 讲解mvvm的设计和实现过程
 
 
@@ -48,10 +48,21 @@
 
 ![mvvm](http://onh40c6zw.bkt.clouddn.com/mvvm.gif?imageView2/1/w/400/h/200/format/gif/q/1|imageslim)
 
-
 ## 了解MV*架构设计模式的演变历史
 
-如果对于MVC、MVP和MVVM的架构设计模式不熟，建议阅读首先阅读[MV*架构设计模式的演变历史](https://github.com/ziyi2/mvvm/blob/master/doc/history.md)。
+如果对于MVC、MVP和MVVM的架构设计模式不熟，建议首先阅读[MV*架构设计模式的演变历史](https://github.com/ziyi2/mvvm/blob/master/doc/history.md)。
+
+## 了解观察者模式和发布/订阅模式
+
+如果对于设计模式不熟，建议首先阅读[观察者模式和发布/订阅模式](https://github.com/ziyi2/mvvm/blob/master/doc/mode.md)
+
+
+## 讲解mvvm的设计和实现过程
+
+### mvvm的结构设计
+
+<img  width="400px" src="http://onh40c6zw.bkt.clouddn.com/%5Bmvvm%5Dmvvm_design.png"/>
+
 
 ## 设计模式
 
@@ -64,7 +75,6 @@
 >- [命令模式](https://github.com/ziyi2/js/blob/master/JS%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F.md#command%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%BC%8F)
 >- [建造者模式](https://github.com/ziyi2/js/blob/master/JS%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F.md#%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F)
 >- [mvvm模式](https://github.com/ziyi2/js/blob/master/JS%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F.md#mvvm)
-
 
 ## References
 - [DMQ/mvvm](https://github.com/DMQ/mvvm)

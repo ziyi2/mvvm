@@ -54,7 +54,7 @@
 
 ## 了解观察者模式和发布/订阅模式
 
-如果对于设计模式不熟，建议首先阅读[观察者模式和发布/订阅模式](https://github.com/ziyi2/mvvm/blob/master/doc/mode.md)
+如果对于设计模式不熟，建议首先阅读[观察者模式和发布/订阅模式](https://github.com/ziyi2/mvvm/blob/master/doc/mode.md)。
 
 
 ## 讲解mvvm的设计和实现过程

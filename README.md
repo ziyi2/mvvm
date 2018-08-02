@@ -64,6 +64,26 @@
 <img  width="800px" src="http://onh40c6zw.bkt.clouddn.com/%5Bmvvm%5Dmvvm_design.png"/>
 
 
+
+> 图中黄色区域和hijack(数据访问器)是Model部分，绿色区域View、binder以及browser是ViewModel部分，视图是View部分，发布/订阅模式用于Model和ViewModel之间的通信，整个构成mvvm模式。
+
+图中的橙色线路主要的功能是实现 Mode -> ViewModel -> View ：
+
+- 1）数据劫持定义：对mvvm实例跟视图相关的数据进行数据监听（数据发生变化的时候可以通过发布/订阅模式通知binder绑定器更新视图）。
+- 2）视图指令解析：对mvvm实例所关联的dom元素转化成文档碎片并进行绑定指令解析（b-value、b-text、b-html等）。
+- 3）绑定视图指令：对view解析绑定指令后的文档碎片进行更新视图处理（将b-value等指令转化为dom最终渲染的视图）。
+- 4）添加数据订阅和用户输入监听事件：订阅mvvm实例的数据变化（用于更新视图），监听视图的用户输入事件（重新设置mvvm实例的数据）。
+
+图中蓝色线路主要的功能是实现 view -> viewModel -> Model -> ViewModel -> View（数据双向绑定）
+
+- 1）监听用户输入事件：对用户的输入input事件进行监听。
+- 2）用户输入的数据处理：调用mvvm的数据设置方法，设置用户输入的数据。
+- 3）数据劫持：监听mvvm的数据变化。
+- 4） 发布数据变化：发布mvvm对应的数据变化（发布之后会被订阅器接收，从而又可以更新数据对应的其他视图变化，注意不包括1）中的用户输入对应的元素。
+
+> Model -> ViewModel -> View 可以通过手动设置mvvm的数据从而执行3）和4）。
+
+
 ## 设计模式
 
 > 本示例使用了哪些[设计模式](https://ziyi2.github.io/2018/07/15/js%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F.html#more)？

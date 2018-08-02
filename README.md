@@ -61,7 +61,7 @@
 
 > - mvvm的结构设计
 > - [中介者模式](https://github.com/ziyi2/mvvm/tree/master/demo/mediator)
-> - 数据劫持和数据双向绑定
+> - [数据劫持](https://github.com/ziyi2/mvvm/tree/master/demo/hijack)和[数据双向绑定](https://github.com/ziyi2/mvvm/tree/master/demo/dataBinder)
 > - viewModel的实现
 > - mvvm实现
 
@@ -191,6 +191,14 @@ mediator.pub('channel1', { name: 'ziyi1' })
 > 可以通过浏览器调试[中介者模式的demo源码](https://github.com/ziyi2/mvvm/tree/master/demo/mediator)查看打印信息。
 
 
+### 数据劫持和数据双向绑定
+
+#### 数据劫持
+
+#### 数据双向绑定
+
+
+
 
 ## 设计模式
 
@@ -206,3 +214,8 @@ mediator.pub('channel1', { name: 'ziyi1' })
 
 ## References
 - [DMQ/mvvm](https://github.com/DMQ/mvvm)
+- [Scaling Isomorphic Javascript Code](https://blog.nodejitsu.com/scaling-isomorphic-javascript-code/)
+- [Understanding JavaServer Pages Model 2 architecture](https://www.javaworld.com/article/2076557/java-web-development/understanding-javaserver-pages-model-2-architecture.html)
+- [GUI Architectures](https://martinfowler.com/eaaDev/uiArchs.html)
+- [界面之下：还原真实的MV*模式](https://github.com/livoras/blog/issues/11)
+

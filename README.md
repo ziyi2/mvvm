@@ -59,11 +59,17 @@
 
 ## 讲解mvvm的设计和实现过程
 
+> - mvvm的结构设计
+> - [中介者模式](https://github.com/ziyi2/mvvm/tree/master/demo/mediator)
+> - 数据劫持和数据双向绑定
+> - viewModel的实现
+> - mvvm实现
+
+接下来将按照以上顺序一步步讲解mvvm的实现过程，首先会讲解总体的结构设计，然后从一个个实现的小demo讲解最终的实现过程，帮助读者逐步理解mvvm的设计过程。
+
 ### mvvm的结构设计
 
 <img  width="800px" src="http://onh40c6zw.bkt.clouddn.com/%5Bmvvm%5Dmvvm_design.png"/>
-
-
 
 > 图中黄色区域和hijack(数据访问器)是Model部分，绿色区域View、binder以及browser是ViewModel部分，视图是View部分，发布/订阅模式用于Model和ViewModel之间的通信，整个构成mvvm模式。
 
@@ -82,6 +88,108 @@
 - 4） 发布数据变化：发布mvvm对应的数据变化（发布之后会被订阅器接收，从而又可以更新数据对应的其他视图变化，注意不包括1）中的用户输入对应的元素。
 
 > Model -> ViewModel -> View 可以通过手动设置mvvm的数据从而执行3）和4）。
+
+### 中介者模式
+
+最简单的中介者模式只需要实现发布、订阅和取消订阅的功能。同时发布和订阅之间通过事件通道（channels）进行信息传递，可以避免观察者模式中产生依赖的情况。中介者模式的代码如下：
+
+``` javascript
+class Mediator {
+  constructor() {
+    this.channels = {}
+    this.uid = 0
+  }
+
+  /** 
+   * @Desc:   订阅频道
+   * @Parm:   {String} channel 频道
+   *          {Function} cb 回调函数 
+   */  
+  sub(channel, cb) {
+    let { channels } = this
+    if(!channels[channel]) channels[channel] = []
+    this.uid ++ 
+    channels[channel].push({
+      context: this,
+      uid: this.uid,
+      cb
+    })
+    console.log('[mediator][sub] -> this.channels: ', this.channels)
+    return this.uid
+  }
+
+  /** 
+   * @Desc:   发布频道 
+   * @Parm:   {String} channel 频道
+   *          {Any} data 数据 
+   */  
+  pub(channel, data) {
+    console.log('[mediator][pub] -> chanel: ', channel)
+    let ch = this.channels[channel]
+    if(!ch) return false
+    let len = ch.length
+    // 后订阅先触发
+    while(len --) {
+      ch[len].cb.call(ch[len].context, data)
+    }
+    return this
+  }
+
+  /** 
+   * @Desc:   取消订阅  
+   * @Parm:   {String} uid 订阅标识 
+   */  
+  cancel(uid) {
+    let { channels } = this
+    for(let channel of Object.keys(channels)) {
+      let ch = channels[channel]
+      if(ch.length === 1 && ch[0].uid === uid) {
+        delete channels[channel]
+        console.log('[mediator][cancel][delete] -> chanel: ', channel)
+        console.log('[mediator][cancel] -> chanels: ', channels)
+        return
+      }
+      for(let i=0,len=ch.length; i<len; i++) {
+          if(ch[i].uid === uid) {
+            ch.splice(i,1)
+            console.log('[mediator][cancel][splice] -> chanel: ', channel)
+            console.log('[mediator][cancel] -> chanels: ', channels)
+            return
+          }
+      }
+    }
+  }
+}
+```
+
+在每一个mvvm实例中，都需要实例化一个中介者实例对象，中介者实例对象的使用方法如下：
+
+``` javascript
+let mediator = new Mediator()
+// 订阅channel1
+let channel1First = mediator.sub('channel1', (data) => {
+  console.log('[mediator][channel1First][callback] -> data', data)
+})
+// 再次订阅channel1
+let channel1Second = mediator.sub('channel1', (data) => {
+  console.log('[mediator][channel1Second][callback] -> data', data)
+})
+// 订阅channel2
+let channel2 = mediator.sub('channel2', (data) => {
+  console.log('[mediator][channel2][callback] -> data', data)
+})
+// 发布(广播)channel1,此时订阅channel1的两个回调函数会连续执行
+mediator.pub('channel1', { name: 'ziyi1' })
+// 发布(广播)channel2，此时订阅channel2的回调函数执行
+mediator.pub('channel2', { name: 'ziyi2' })
+// 取消channel1标识为channel1Second的订阅
+mediator.cancel(channel1Second)
+// 此时只会执行channel1中标识为channel1First的回调函数
+mediator.pub('channel1', { name: 'ziyi1' })
+```
+
+> 可以通过浏览器调试[中介者模式的demo源码](https://github.com/ziyi2/mvvm/tree/master/demo/mediator)查看打印信息。
+
 
 
 ## 设计模式

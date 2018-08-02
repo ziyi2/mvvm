@@ -30,7 +30,6 @@ person.name
 person.age
 // [hijack][set] -> newVal:  ziyi
 person.name = 'ziyi'
-console.log(person)
 
 // 属性类型变化劫持
 // [hijack][get] -> val:  { familyName:"ziyi2", givenName:"xiankang" }

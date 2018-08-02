@@ -7,6 +7,7 @@
   <title>Document</title>
 </head>
 <body>
+  <h1>数据双向绑定演示</h1>
   <input id="input" type="text">
   <div id="div"></div>
   <script src="./hikack.js"></script>
@@ -18,12 +19,12 @@
     hijack(data, input)
 
     // model -> view
-    data.input = '11111111'
+    data.input = '11111112221'
 
     // view -> model
     input.oninput = function(e) {
-      // model -> view
       data.input = e.target.value
+      // model -> view
     }
   </script>
 </body>

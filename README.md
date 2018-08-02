@@ -2,7 +2,7 @@
 
 > 本文可以帮助你做什么？
 >- 了解MV*架构设计模式的演变历史
->- 解观察者模式和发布/订阅模式
+>- 了解观察者模式和发布/订阅模式
 >- 讲解mvvm的设计和实现过程
 
 
@@ -48,10 +48,34 @@
 
 ![mvvm](http://onh40c6zw.bkt.clouddn.com/mvvm.gif?imageView2/1/w/400/h/200/format/gif/q/1|imageslim)
 
-
 ## 了解MV*架构设计模式的演变历史
 
-如果对于MVC、MVP和MVVM的架构设计模式不熟，建议阅读首先阅读MV*架构设计模式的演变历史。如果比较熟悉，则可以略过。
+如果对于MVC、MVP和MVVM的架构设计模式不熟，建议首先阅读[MV*架构设计模式的演变历史](https://github.com/ziyi2/mvvm/blob/master/doc/history.md)。
+
+## 了解观察者模式和发布/订阅模式
+
+如果对于设计模式不熟，建议首先阅读[观察者模式和发布/订阅模式](https://github.com/ziyi2/mvvm/blob/master/doc/mode.md)。
+
+
+## 讲解mvvm的设计和实现过程
+
+### mvvm的结构设计
+
+<img  width="800px" src="http://onh40c6zw.bkt.clouddn.com/%5Bmvvm%5Dmvvm_design.png"/>
+
+> 图中黄色区域和hijack(数据访问器)是Model部分，绿色区域View、binder以及browser是ViewModel部分，视图是View部分，发布/订阅模式用于Model和ViewModel之间的通信，整个构成mvvm模式。
+
+图中的橙色线路主要的功能是实现 Mode -> ViewModel -> View ：
+- 1. 数据劫持定义：对mvvm实例跟视图相关的数据进行数据监听，以便数据发生变化的时候可以通过发布/订阅模式通知binder(绑定器)更新视图。
+- 2. 视图指令解析：对mvvm实例所关联的dom元素进行指令解析（b-value、b-text、b-html等），并传递给binder进行视图更新。
+- 3. 绑定视图指令：对view解析绑定指令后的文档碎片进行更新视图处理（将b-value等指令转化为dom最终渲染的视图），订阅mvvm实例的数据变化以便更新视图，监听视图的用户输入事件，以便重新设置mvvm实例的数据。
+- 4 添加数据订阅：binder在更新视图的方法中订阅数据变化，从而可以重新更新视图。
+- 5.更新视图
+
+图中蓝色线路主要的功能是实现 view -> viewModel -> Model -> ViewModel -> View
+
+
+
 
 ## 设计模式
 
@@ -65,17 +89,5 @@
 >- [建造者模式](https://github.com/ziyi2/js/blob/master/JS%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F.md#%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F)
 >- [mvvm模式](https://github.com/ziyi2/js/blob/master/JS%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F.md#mvvm)
 
-
-
 ## References
 - [DMQ/mvvm](https://github.com/DMQ/mvvm)
-- [Software design pattern(wikipedia)](https://en.wikipedia.org/wiki/Software_design_pattern)
-- [MVC(wikipedia)](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller)
-- [Scaling Isomorphic Javascript Code](https://blog.nodejitsu.com/scaling-isomorphic-javascript-code/)
-- [Understanding JavaServer Pages Model 2 architecture](https://www.javaworld.com/article/2076557/java-web-development/understanding-javaserver-pages-model-2-architecture.html)
-- [GUI Architectures](https://martinfowler.com/eaaDev/uiArchs.html)
-- [maria(javascript smalltalk-80 mvc)](https://github.com/petermichaux/maria)
-- [mvw(javascript mvc/mvp/mvvm)](https://github.com/petermichaux/maria)
-- [界面之下：还原真实的MV*模式](https://github.com/livoras/blog/issues/11)
-- [秒懂前端框架历史和MVVM框架原理](https://www.jianshu.com/p/a5f2b2b45618)
-- [MVC，MVP 和 MVVM 的图示](http://www.ruanyifeng.com/blog/2015/02/mvcmvp_mvvm.html)

@@ -188,14 +188,146 @@ mediator.cancel(channel1Second)
 mediator.pub('channel1', { name: 'ziyi1' })
 ```
 
-> 可以通过浏览器调试[中介者模式的demo源码](https://github.com/ziyi2/mvvm/tree/master/demo/mediator)查看打印信息。
+> [中介者模式的demo源码](https://github.com/ziyi2/mvvm/tree/master/demo/mediator)。
 
 
 ### 数据劫持和数据双向绑定
 
 #### 数据劫持
 
+#####  对象的属性
+
+对象的属性可分为数据属性（特性包括[[Value]]、[[Writable]]、[[Enumerable]]、[[Configurable]]）和存储器/访问器属性（特性包括[[ Get ]]、[[ Set ]]、[[Enumerable]]、[[Configurable]]），对象的属性只能是数据属性或访问器属性的其中一种。
+
+属性的特性的含义
+
+- [[Configurable]]: 表示能否通过 delete 删除属性从而重新定义属性，能否修改属性的特性，或者能否把属性修改为访问器属性。
+- [[Enumerable]]: 表示能否通过 for-in 循环返回属性。
+- [[Value]]: 包含这个属性的值。读取属性值的时候，从这个位置读；写入属性值的时候，把新值保存在这个位置。这个特性的默认值为 undefined。
+- [[Writable]]: 表示能否修改属性的值。
+- [[ Get ]]: 在读取属性时调用的函数。默认值为 undefined。
+- [[ Set ]]: 在写入属性时调用的函数。默认值为 undefined。
+
+> 数据劫持就是使用了[[ Get ]]和[[ Set ]]的特性，在访问对象的属性和写入对象的属性时能够自动触发属性特性的调用函数，从而做到监听数据变化的目的。
+
+对象的属性可以通过ES5的设置特性方法Object.defineProperty(data, key, descriptor)改变属性的特性，其中descriptor传入的就是以上所描述的特性集合。
+
+##### 实现数据劫持
+
+有了对象的访问器属性的[[ Get ]]和[[ Set ]]特性,就可以实现数据监听：
+
+
+``` javascript
+let hijack = (data) => {
+  if(typeof data !== 'object') return
+  for(let key of Object.keys(data)) {
+    let val = data[key]
+    Object.defineProperty(data, key, {
+      enumerable: true,
+      configurable: false,
+      get() {
+        console.log('[hijack][get] -> val: ', val)
+        // 和执行 return data[key] 有什么区别 ？
+        return val
+      },
+      set(newVal) {
+        if(newVal === val) return
+        console.log('[hijack][set] -> newVal: ', newVal)
+        val = newVal
+        // 如果新值是object, 则对其属性劫持
+        hijack(newVal)
+      }
+    })
+  }
+}
+
+let person = { name: 'ziyi2', age: 1 }
+hijack(person)
+// [hijack][get] -> val:  ziyi2
+person.name
+// [hijack][get] -> val:  1
+person.age
+// [hijack][set] -> newVal:  ziyi
+person.name = 'ziyi'
+
+// 属性类型变化劫持
+// [hijack][get] -> val:  { familyName:"ziyi2", givenName:"xiankang" }
+person.name = { familyName: 'zhu',  givenName: 'xiankang' }
+// [hijack][get] -> val:  ziyi2
+person.name.familyName = 'ziyi2'
+
+// 数据属性
+let job = { type: 'javascript' }
+console.log(Object.getOwnPropertyDescriptor(job, "type"))
+// 访问器属性
+console.log(Object.getOwnPropertyDescriptor(person, "name"))
+```
+
+> [数据劫持的demo源码](https://github.com/ziyi2/mvvm/tree/master/demo/hijack)。
+
 #### 数据双向绑定
+
+数据双向绑定主要包括数据的变化引起视图的变化（View -> 用户输入监听事件 -> Model）、视图的变化又改变数据（Model -> 监听数据变化 -> Model），从而实现数据和视图之间的强联系。
+
+在实现了数据监听的基础上，加上用户输入事件以及视图更新，就可以简单实现数据的双向绑定
+
+``` javascript
+<input id="input" type="text">
+<div id="div"></div>
+
+// 监听数据变化
+function hijack(data) {
+  if(typeof data !== 'object') return
+  for(let key of Object.keys(data)) {
+    let val = data[key]
+    Object.defineProperty(data, key, {
+      enumerable: true,
+      configurable: false,
+      get() {
+        console.log('[hijack][get] -> val: ', val)
+        // 和执行 return data[key] 有什么区别 ？
+        return val
+      },
+      set(newVal) {
+        if(newVal === val) return
+        console.log('[hijack][set] -> newVal: ', newVal)
+        val = newVal
+        
+        // 更新所有和data.input数据相关联的视图
+        input.value = newVal
+        div.innerHTML = newVal
+
+        // 如果新值是object, 则对其属性劫持
+        hijack(newVal)
+      }
+    })
+  }
+}
+
+let input = document.getElementById('input')
+let div = document.getElementById('div')
+
+// model
+let data = { input: '' }
+
+// 数据劫持
+hijack(data, input)
+
+// model -> view
+data.input = '11111112221'
+
+// view -> model
+input.oninput = function(e) {
+  // model -> view
+  data.input = e.target.value
+}
+```
+> [数据双向绑定的demo源码](https://github.com/ziyi2/mvvm/tree/master/demo/dataBinder)。
+
+
+
+
+
 
 
 

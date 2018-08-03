@@ -78,6 +78,10 @@ let mediator = new Mediator()
 let channel1First = mediator.sub('channel1', (data) => {
   console.log('[mediator][channel1First][callback] -> data', data)
 })
+<<<<<<< HEAD
+=======
+
+>>>>>>> 886af83f9a50c6528600bbb2606841ddc8e1039f
 let channel1Second = mediator.sub('channel1', (data) => {
   console.log('[mediator][channel1Second][callback] -> data', data)
 })
@@ -88,5 +92,5 @@ let channel2 = mediator.sub('channel2', (data) => {
 mediator.pub('channel1', { name: 'ziyi1' })
 mediator.pub('channel2', { name: 'ziyi2' })
 
-// mediator.cancel(channel1Second)
-// mediator.pub('channel1', { name: 'ziyi1' })
+mediator.cancel(channel1Second)
+mediator.pub('channel1', { name: 'ziyi1' })

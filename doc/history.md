@@ -53,7 +53,7 @@ Model2模式最早在1998年应用在JSP应用程序当中，JSP Model 1应用�
 
 MVP模式是MVC模式的改良。在上个世纪90年代，IBM旗下的子公司Taligent在用C/C++开发一个叫CommonPoint的图形界面应用系统的时候提出。
 
-<img  width="400px" src="https://raw.githubusercontent.com/ziyi2/mvvm/master/doc/images/mvc.png"/>
+<img  width="400px" src="https://raw.githubusercontent.com/ziyi2/mvvm/master/doc/images/mvp.png"/>
 
 如上图所示，MVP打破了View原来对于Model的依赖，其余的依赖关系和MVC模式一致。
 

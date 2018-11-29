@@ -4,7 +4,7 @@
 
 起初在设计GUI（图形用户界面）应用程序的时候，代码是杂乱无章的，通常难以管理和维护。
 
-<img  width="400px" src="http://onh40c6zw.bkt.clouddn.com/%5Bmvvm%5Dmv%2A.jpeg"/>
+<img  width="400px" src="https://raw.githubusercontent.com/ziyi2/mvvm/master/doc/images/gui.png"/>
 
 起初的GUI如上图所示：
 
@@ -20,7 +20,7 @@
 
 早在上个世纪70年代，美国的施乐公司（Xerox）的工程师研发了Smalltalk编程语言，并且开始用它编写GUI。而在Smalltalk-80版本的时候，一位叫Trygve Reenskaug的工程师设计了MVC的架构模式，极大地降低了GUI的管理难度。
 
-<img  width="400px" src="http://onh40c6zw.bkt.clouddn.com/%5Bmvvm%5Dmvc.png"/>
+<img  width="400px" src="https://raw.githubusercontent.com/ziyi2/mvvm/master/doc/images/mvc.png"/>
 
 如上图所示，MVC把GUI分成View、Model、Controller（可热插拔，主要进行Model和View之间的协作（路由、输入预处理等）的应用逻辑）三个层次。
 
@@ -36,7 +36,7 @@
 
 经典MVC只用于解决GUI问题，Web服务端的开发也发展了MVC模式（当然也是为了易于代码的管理维护），称做MVC Model2。
 
-<img  width="400px" src="http://onh40c6zw.bkt.clouddn.com/%5Bmvvm%5Dmvc_model_2.png"/>
+<img  width="400px" src="https://raw.githubusercontent.com/ziyi2/mvvm/master/doc/images/mvc_model2.png"/>
 
 如上图所示，服务端接收到来自客户端的请求，服务端通过路由规则把这个请求交由给特定的Controller进行处理，Controller执行相应的应用逻辑，对Model进行操作，Model执行业务逻辑以后用数据去渲染特定的模版，返回给客户端。
 
@@ -44,7 +44,7 @@
 
 当然MVC Model2并不是最早的服务端MVC模式，在这之前还有MVC Model1，如下图所示：
 
-<img  width="600px" src="http://onh40c6zw.bkt.clouddn.com/%5Bmvvm%5Dmvc_model_1_2.png"/>
+<img  width="600px" src="https://raw.githubusercontent.com/ziyi2/mvvm/master/doc/images/mvc_model.png"/>
 
 Model2模式最早在1998年应用在JSP应用程序当中，JSP Model 1应用管理的混乱诱发了JSP参考了客户端MVC模式，催生了Model2。 而在Model1中，JSP同时包含了Controller和View结构，JavaBean(在Model2中只处理业务逻辑)包含了Controller和Model结构，因此相当混乱。需要注意在JSP Model2中，Model的数据变更后，还可能通过JavaBean到Controller（Controller主要识别当前数据对应的JSP）再到JSP（图中稍微有点小错误）因此在服务端MVC中，可能产生这样的流程View -> Controller -> Model -> Controller -> Model这样的流程，和Web前端的MVC流程是不同的。
 
@@ -53,7 +53,7 @@ Model2模式最早在1998年应用在JSP应用程序当中，JSP Model 1应用�
 
 MVP模式是MVC模式的改良。在上个世纪90年代，IBM旗下的子公司Taligent在用C/C++开发一个叫CommonPoint的图形界面应用系统的时候提出。
 
-<img  width="400px" src="http://onh40c6zw.bkt.clouddn.com/%5Bmvvm%5Dmvp.png"/>
+<img  width="400px" src="https://raw.githubusercontent.com/ziyi2/mvvm/master/doc/images/mvc.png"/>
 
 如上图所示，MVP打破了View原来对于Model的依赖，其余的依赖关系和MVC模式一致。
 
@@ -69,7 +69,7 @@ MVP模式是MVC模式的改良。在上个世纪90年代，IBM旗下的子公司
 
 MVVM模式是在MVP模式的基础上进行了改良，在MVP中，派发器P需要手动调用View组件化后的接口才能实现视图的更新，而在MVVM模式中，将P改良成抽象视图（VM），
 
-<img  width="400px" src="http://onh40c6zw.bkt.clouddn.com/%5Bmvvm%5Dmvvm.png"/>
+<img  width="400px" src="https://raw.githubusercontent.com/ziyi2/mvvm/master/doc/images/mvvm.png"/>
 
 如上图所示：MVVM模式是在MVP模式的基础上进行了改良，在MVP中，派发器P需要手动调用View组件化后的接口才能实现视图的更新，而在MVVM模式中，将P改良成抽象视图（ViewModel）。ViewModel中有一个Binder（ Data-binding Engine），在Presenter中负责的View和Model的数据同步逻辑交由Binder处理（注意不包括应用逻辑）。
 

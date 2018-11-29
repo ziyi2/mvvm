@@ -69,7 +69,7 @@
 
 ### mvvm的结构设计
 
-<img  width="800px" src="http://onh40c6zw.bkt.clouddn.com/%5Bmvvm%5Dmvvm_design.png"/>
+<img  width="800px" src="https://raw.githubusercontent.com/ziyi2/mvvm/master/doc/images/mvvm_design.png"/>
 
 > 图中黄色区域和hijack(数据访问器)是Model部分，绿色区域View、binder以及browser是ViewModel部分，视图是View部分，发布/订阅模式用于Model和ViewModel之间的通信，整个构成mvvm模式。
 
@@ -531,7 +531,7 @@ let browser = {
 
 如果不熟悉mvvm结构模式的人，可以再次阅读[MV*架构设计模式的演变历史](https://github.com/ziyi2/mvvm/blob/master/doc/history.md)，ViewModel(内部绑定器Binder)的作用不仅仅是实现了Model到View的自动同步（Sync Logic）逻辑（以上**视图绑定指令的解析**的实现只是实现了一个视图的绑定指令初始化，一旦Model变化，视图要更新的功能并没有实现），还实现了View到Model的自动同步逻辑，从而最终实现了数据的双向绑定。
 
-<img  width="400px" src="http://onh40c6zw.bkt.clouddn.com/%5Bmvvm%5Dmvvm.png"/>
+<img  width="400px" src="https://raw.githubusercontent.com/ziyi2/mvvm/master/doc/images/mvvm.png"/>
 
 因此只要在**视图绑定指令的解析**的基础上增加Model的数据监听功能（数据变化更新视图）和View视图的input事件监听功能（监听视图的数据变化从而更新相应的Model数据，注意Model的变化又会因为数据监听从而更新和Model相关的视图）就可以实现View和Model的双向绑定。同时需要注意的是，数据变化更新视图的过程需要使用发布/订阅模式，如果对流程不清晰，可以继续回看mvvm的结构设计。
 

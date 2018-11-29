@@ -4,7 +4,7 @@
 
 观察者模式是使用一个subject目标对象维持一系列依赖于它的observer观察者对象，将有关状态的任何变更自动通知给这一系列观察者对象。当subject目标对象需要告诉观察者发生了什么事情时，它会向观察者对象们广播一个通知。
 
-<img  width="400px" src="http://onh40c6zw.bkt.clouddn.com/%5Bmvvm%5Dobserver.png"/>
+<img  width="400px" src="https://raw.githubusercontent.com/ziyi2/mvvm/master/doc/images/observer.png"/>
 
 如上图所示：一个或多个观察者对目标对象的状态感兴趣时，可以将自己依附在目标对象上以便注册感兴趣的目标对象的状态变化，目标对象的状态发生改变就会发送一个通知消息，调用每个观察者的更新方法。如果观察者对目标对象的状态不感兴趣，也可以将自己从中分离。
 
@@ -12,7 +12,7 @@
 
 发布/订阅模式使用一个事件通道，这个通道介于订阅者和发布者之间，该设计模式允许代码定义应用程序的特定事件，这些事件可以传递自定义参数，自定义参数包含订阅者需要的信息，采用事件通道可以避免发布者和订阅者之间产生依赖关系。
 
-<img  width="400px" src="http://onh40c6zw.bkt.clouddn.com/%5Bmvvm%5Dpub_sub.png"/>
+<img  width="400px" src="https://raw.githubusercontent.com/ziyi2/mvvm/master/doc/images/pub_sub.png"/>
 
 
 ## 两者的区别

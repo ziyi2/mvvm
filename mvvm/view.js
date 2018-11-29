@@ -105,3 +105,65 @@ class View {
     return fragment
   }
 }
+
+
+
+
+let arr = new Array(1000000).fill(1)
+
+// for测试 ++测试
+console.time('for ++')
+for(let i=0, len=arr.length; i<len; i++) {
+  arr[i]
+}
+console.timeEnd('for ++')
+
+console.time('for ++')
+for(let i=0, len=arr.length; i<len; i++) {
+  arr[i]
+}
+console.timeEnd('for ++')
+
+console.time('for ++')
+for(let i=0, len=arr.length; i<len; i++) {
+  arr[i]
+}
+console.timeEnd('for ++')
+
+
+console.time('map')
+arr.map(item => item)
+console.timeEnd('map')
+
+console.time('map')
+arr.map(item => item)
+console.timeEnd('map')
+
+console.time('map')
+arr.map(item => item)
+console.timeEnd('map')
+
+
+console.time('forEach')
+arr.forEach(item => item)
+console.timeEnd('forEach')
+
+console.time('forEach')
+arr.forEach(item => item)
+console.timeEnd('forEach')
+
+console.time('forEach')
+arr.forEach(item => item)
+console.timeEnd('forEach')
+
+
+console.time('for...of...')
+for(let index of arr) {
+  
+}
+console.timeEnd('for...of...')
+
+
+
+
+
